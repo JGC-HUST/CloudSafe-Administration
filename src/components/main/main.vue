@@ -27,7 +27,7 @@
     <Layout>
       <Header class="header-con">
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
-          <user :message-unread-count="unreadCount" :user-avator="userAvator" />
+          <user :user-avator="userAvator" />
         </header-bar>
       </Header>
       <Content class="main-content-con">
