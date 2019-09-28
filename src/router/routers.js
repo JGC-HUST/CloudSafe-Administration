@@ -83,7 +83,7 @@ export default [
   // 审核管理
   {
     path: '/update',
-    name: 'update',
+    name: 'update3',
     meta: {
       icon: 'ios-checkbox-outline',
       title: '审核管理'
@@ -113,7 +113,7 @@ export default [
   // 用户状态管理
   {
     path: '/update',
-    name: 'update',
+    name: 'update4',
     meta: {
       icon: 'ios-heart-outline',
       title: '用户状态管理'
@@ -141,7 +141,7 @@ export default [
   // 密保管理
   {
     path: '/update',
-    name: 'update',
+    name: 'update5',
     meta: {
       icon: 'ios-help-circle-outline',
       title: '密保管理'
@@ -171,7 +171,7 @@ export default [
   // 反馈管理
   {
     path: '/update',
-    name: 'update',
+    name: 'update6',
     meta: {
       icon: 'ios-chatboxes-outline',
       title: '反馈管理'

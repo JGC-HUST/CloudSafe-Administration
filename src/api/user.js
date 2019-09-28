@@ -1,5 +1,12 @@
 import axios from '@/libs/api.request'
 
+export const getUserList = () => {
+  return axios.request({
+    url: '/Management/findAllUser',
+    method: 'get'
+  })
+}
+
 export const login = ({ userName, password }) => {
   const data = {
     userName,
