@@ -7,6 +7,34 @@ export const getUserList = () => {
   })
 }
 
+export const getUserById = (id) => {
+  return axios.request({
+    url: `/Management/findUserById?user_id=${id}`,
+    method: 'get'
+  })
+}
+
+export const getUserByName = (name) => {
+  return axios.request({
+    url: `/Management/findUserByName?user_name=${name}`,
+    method: 'get'
+  })
+}
+
+export const getUserByPhone = (phone) => {
+  return axios.request({
+    url: `/Management/findUserByPhone?user_phone=${phone}`,
+    method: 'get'
+  })
+}
+
+export const getUserByEmail = (email) => {
+  return axios.request({
+    url: `/Management/findUserByEmail?user_email=${email}`,
+    method: 'get'
+  })
+}
+
 export const login = ({ userName, password }) => {
   const data = {
     userName,

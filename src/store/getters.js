@@ -1,31 +1,35 @@
 const getters = {
     // userInfo: {},
-    getUserInfo(state) {
+    getUserInfo ( state ) {
         return state.userInfo;
     },
     // userList: [],
-    getUserList(state) {
+    getUserList ( state ) {
         return state.userList;
     },
     // feedList: [],
-    getFeedList(state) {
+    getFeedList ( state ) {
         return state.feedList;
     },
     // checkList: [],
-    getCheckList(state) {
+    getCheckList ( state ) {
         return state.checkList;
     },
     // keyList: [],
-    getKeyList(state) {
+    getKeyList ( state ) {
         return state.keyList;
     },
     // statusList: [],
-    getStatusList(state) {
+    getStatusList ( state ) {
         return state.statusList;
     },
     // questionList: []
-    getQuestionList(state) {
+    getQuestionList ( state ) {
         return state.questionList;
+    },
+    // user2Edit: {}
+    getUser2Edit () {
+        return state.user2Edit;
     }
 }
 

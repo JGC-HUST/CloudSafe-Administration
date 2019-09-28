@@ -6,14 +6,18 @@ const mutations = {
     // keyList: [],
     // statusList: [],
     // questionList: []
-    updateUserInfo(state, info) {
+    // user2Edit: {}
+    updateUserInfo ( state, info ) {
         state.userInfo = info;
     },
-    updateUserList(state, list) {
+    updateUserList ( state, list ) {
         state.userList = list;
     },
-    clearUserList(state) {
+    clearUserList ( state ) {
         state.userList = []
+    },
+    setUser2Edit ( state, user ) {
+        state.user2Edit = user;
     }
 }
 

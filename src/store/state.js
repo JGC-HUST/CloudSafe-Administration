@@ -5,6 +5,7 @@ const state = {
     checkList: [],
     keyList: [],
     statusList: [],
-    questionList: []
+    questionList: [],
+    user2Edit: {}
 }
 export default state;

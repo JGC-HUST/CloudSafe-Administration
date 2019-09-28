@@ -7,7 +7,7 @@
         <Option value="uname">用户名</Option>
         <Option value="uemail">用户邮箱</Option>
       </Select>
-      <Button slot="append" icon="ios-search"></Button>
+      <Button slot="append" icon="ios-search" @click="searchUser"></Button>
     </Input>
     <div v-if="loading" class="wrapper">
       <Col class="demo-spin-col" span="8">
@@ -18,7 +18,7 @@
       </Col>
     </div>
     <div v-else class="wrapper">
-      <Table :columns="columns10" :data="data2Display" width="1500"></Table>
+      <Table :columns="columns10" :data="data2Display" width="1200"></Table>
       <Page
         :current="1"
         :total="$store.getters.getUserList.length"
@@ -61,6 +61,49 @@ export default {
         {
           title: "电话",
           key: "user_phone"
+        },
+        {
+          title: "Action",
+          key: "action",
+          width: 150,
+          align: "center",
+          render: (h, params) => {
+            return h("div", [
+              h(
+                "Button",
+                {
+                  props: {
+                    type: "primary",
+                    size: "small"
+                  },
+                  style: {
+                    marginRight: "5px"
+                  },
+                  on: {
+                    click: () => {
+                      this.edit(params.row);
+                    }
+                  }
+                },
+                "编辑"
+              ),
+              h(
+                "Button",
+                {
+                  props: {
+                    type: "error",
+                    size: "small"
+                  },
+                  on: {
+                    click: () => {
+                      this.remove(params.row);
+                    }
+                  }
+                },
+                "删除"
+              )
+            ]);
+          }
         }
       ]
     };
@@ -78,7 +121,6 @@ export default {
   },
   beforeMount() {
     this.$store.dispatch("pullUserList");
-    this.$store;
   },
   methods: {
     changePage(num) {
@@ -91,6 +133,37 @@ export default {
       } else {
         this.$store.dispatch("resetUserList");
       }
+    },
+    searchUser() {
+      console.log(this.selectValue);
+      switch (this.selectValue) {
+        case "uid":
+          this.$store.dispatch("pullUserById", this.inputValue);
+          break;
+        case "uname":
+          this.$store.dispatch("pullUserByName", this.inputValue);
+          break;
+        case "uphone":
+          this.$store.dispatch("pullUserByPhone", this.inputValue);
+          break;
+        case "uemail":
+          this.$store.dispatch("pullUserByEmail", this.inputValue);
+          break;
+        default:
+          break;
+      }
+    },
+    edit(data) {
+      console.dir(data);
+      this.$router.push({
+        name: "userEdit",
+        params: {
+          userInfo: data
+        }
+      });
+    },
+    remove(data) {
+      // todo
     }
   }
 };

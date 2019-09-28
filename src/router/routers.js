@@ -25,13 +25,13 @@ export default [
       title: 'Login - 登录',
       hideInMenu: true
     },
-    component: () => import('@/view/login/login.vue')
+    component: () => import( '@/view/login/login.vue' )
   },
   // 用户管理
   {
     path: '/user',
     name: 'user',
-    redirect: '/user/list',
+    redirect: '/user/userlist',
     meta: {
       icon: 'ios-person-outline',
       title: '用户管理'
@@ -39,14 +39,24 @@ export default [
     component: Main,
     children: [
       {
-        path: 'list',
-        name: 'list',
+        path: 'userList',
+        name: 'userList',
         meta: {
           icon: 'ios-person-outline',
           title: '用户列表',
           hideInMenu: true
         },
-        component: () => import('@/view/user/user.vue')
+        component: () => import( '@/view/user/user.vue' )
+      },
+      {
+        path: 'userEdit',
+        name: 'userEdit',
+        meta: {
+          icon: 'ios-person-outline',
+          title: '编辑用户信息',
+          hideInMenu: true
+        },
+        component: () => import( '@/view/user/edit.vue' )
       }
     ]
   },
@@ -67,7 +77,7 @@ export default [
           icon: 'ios-document',
           title: '上传Csv'
         },
-        component: () => import('@/view/update/update-table.vue')
+        component: () => import( '@/view/update/update-table.vue' )
       },
       {
         path: 'update_paste_page',
@@ -76,7 +86,7 @@ export default [
           icon: 'md-clipboard',
           title: '粘贴表格数据'
         },
-        component: () => import('@/view/update/update-paste.vue')
+        component: () => import( '@/view/update/update-paste.vue' )
       }
     ]
   },
@@ -97,7 +107,7 @@ export default [
           icon: 'ios-document',
           title: '上传Csv'
         },
-        component: () => import('@/view/update/update-table.vue')
+        component: () => import( '@/view/update/update-table.vue' )
       },
       {
         path: 'update_paste_page',
@@ -106,7 +116,7 @@ export default [
           icon: 'md-clipboard',
           title: '粘贴表格数据'
         },
-        component: () => import('@/view/update/update-paste.vue')
+        component: () => import( '@/view/update/update-paste.vue' )
       }
     ]
   },
@@ -126,7 +136,7 @@ export default [
         meta: {
           title: '上传Csv'
         },
-        component: () => import('@/view/update/update-table.vue')
+        component: () => import( '@/view/update/update-table.vue' )
       },
       {
         path: 'update_paste_page',
@@ -134,7 +144,7 @@ export default [
         meta: {
           title: '粘贴表格数据'
         },
-        component: () => import('@/view/update/update-paste.vue')
+        component: () => import( '@/view/update/update-paste.vue' )
       }
     ]
   },
@@ -155,7 +165,7 @@ export default [
           icon: 'ios-document',
           title: '上传Csv'
         },
-        component: () => import('@/view/update/update-table.vue')
+        component: () => import( '@/view/update/update-table.vue' )
       },
       {
         path: 'update_paste_page',
@@ -164,7 +174,7 @@ export default [
           icon: 'md-clipboard',
           title: '粘贴表格数据'
         },
-        component: () => import('@/view/update/update-paste.vue')
+        component: () => import( '@/view/update/update-paste.vue' )
       }
     ]
   },
@@ -185,7 +195,7 @@ export default [
           icon: 'ios-document',
           title: '上传Csv'
         },
-        component: () => import('@/view/update/update-table.vue')
+        component: () => import( '@/view/update/update-table.vue' )
       },
       {
         path: 'update_paste_page',
@@ -194,7 +204,7 @@ export default [
           icon: 'md-clipboard',
           title: '粘贴表格数据'
         },
-        component: () => import('@/view/update/update-paste.vue')
+        component: () => import( '@/view/update/update-paste.vue' )
       }
     ]
   },
@@ -218,7 +228,7 @@ export default [
           notCache: true,
           icon: 'md-home'
         },
-        component: () => import('@/view/single-page/home')
+        component: () => import( '@/view/single-page/home' )
       }
     ]
   },
@@ -238,7 +248,7 @@ export default [
           icon: 'md-notifications',
           title: '消息中心'
         },
-        component: () => import('@/view/single-page/message/index.vue')
+        component: () => import( '@/view/single-page/message/index.vue' )
       }
     ]
   },
@@ -259,7 +269,7 @@ export default [
           notCache: true,
           beforeCloseName: 'before_close_normal'
         },
-        component: () => import('@/view/argu-page/params.vue')
+        component: () => import( '@/view/argu-page/params.vue' )
       },
       {
         path: 'query',
@@ -269,7 +279,7 @@ export default [
           title: route => `{{ query }}-${route.query.id}`,
           notCache: true
         },
-        component: () => import('@/view/argu-page/query.vue')
+        component: () => import( '@/view/argu-page/query.vue' )
       }
     ]
   },
@@ -279,7 +289,7 @@ export default [
     meta: {
       hideInMenu: true
     },
-    component: () => import('@/view/error-page/401.vue')
+    component: () => import( '@/view/error-page/401.vue' )
   },
   {
     path: '/500',
@@ -287,7 +297,7 @@ export default [
     meta: {
       hideInMenu: true
     },
-    component: () => import('@/view/error-page/500.vue')
+    component: () => import( '@/view/error-page/500.vue' )
   },
   {
     path: '*',
@@ -295,6 +305,6 @@ export default [
     meta: {
       hideInMenu: true
     },
-    component: () => import('@/view/error-page/404.vue')
+    component: () => import( '@/view/error-page/404.vue' )
   }
 ]
