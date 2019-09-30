@@ -1,14 +1,17 @@
 <template>
   <div id="container">
-    <Input v-model="inputValue" id="search" size="large" @on-change="handleChange">
-      <Select v-model="selectValue" slot="prepend" style="width: 100px">
-        <Option value="uid">用户ID</Option>
-        <Option value="uphone">用户电话</Option>
-        <Option value="uname">用户名</Option>
-        <Option value="uemail">用户邮箱</Option>
-      </Select>
-      <Button slot="append" icon="ios-search" @click="searchUser"></Button>
-    </Input>
+    <div id="top">
+      <Input v-model="inputValue" id="search" size="default" @on-change="handleChange">
+        <Select v-model="selectValue" slot="prepend" style="width: 100px">
+          <Option value="uid">用户ID</Option>
+          <Option value="uphone">用户电话</Option>
+          <Option value="uname">用户名</Option>
+          <Option value="uemail">用户邮箱</Option>
+        </Select>
+        <Button slot="append" icon="ios-search" @click="searchUser"></Button>
+      </Input>
+      <Button type="info" @click="handleAddUser">新增用户</Button>
+    </div>
     <div v-if="loading" class="wrapper">
       <Col class="demo-spin-col" span="8">
         <Spin fix>
@@ -136,6 +139,9 @@ export default {
     },
     searchUser() {
       console.log(this.selectValue);
+      if (this.inputValue == "") {
+        return;
+      }
       switch (this.selectValue) {
         case "uid":
           this.$store.dispatch("pullUserById", this.inputValue);
@@ -164,6 +170,9 @@ export default {
     },
     remove(data) {
       // todo
+    },
+    handleAddUser() {
+      this.$router.push({ name: "userAdd" });
     }
   }
 };
@@ -179,9 +188,15 @@ export default {
   flex-direction: column;
   align-items: center;
 }
+#top {
+  display: flex;
+  align-items: center;
+}
 #search {
-  width: 80%;
-  margin: 40px auto;
+  width: 60%;
+  margin: 40px;
+  margin-left: 17%;
+  margin-right: 30px;
 }
 #page {
   left: 50%;

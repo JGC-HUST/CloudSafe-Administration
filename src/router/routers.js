@@ -57,6 +57,16 @@ export default [
           hideInMenu: true
         },
         component: () => import( '@/view/user/edit.vue' )
+      },
+      {
+        path: 'userAdd',
+        name: 'userAdd',
+        meta: {
+          icon: 'ios-person-outline',
+          title: '新增用户',
+          hideInMenu: true
+        },
+        component: () => import( '@/view/user/new.vue' )
       }
     ]
   },

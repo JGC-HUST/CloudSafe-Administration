@@ -8,6 +8,7 @@
       v-model="collapsed"
       class="left-sider"
       :style="{overflow: 'hidden'}"
+      style="background-color: #001529 !important"
     >
       <side-menu
         accordion
