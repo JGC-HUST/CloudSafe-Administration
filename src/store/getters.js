@@ -30,7 +30,13 @@ const getters = {
     // user2Edit: {}
     getUser2Edit () {
         return state.user2Edit;
-    }
+    },
+    getKfile2Edit () {
+        return state.kfile2Edit;
+    },
+    getCheck2Edit () {
+        return state.check2Edit;
+    },
 }
 
 export default getters;

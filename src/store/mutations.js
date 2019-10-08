@@ -18,7 +18,24 @@ const mutations = {
     },
     setUser2Edit ( state, user ) {
         state.user2Edit = user;
+    },
+    updateKfileList ( state, list ) {
+        state.keyList = list;
+    },
+    clearKfileList ( state ) {
+        state.keyList = []
+    },
+    setKfile2Edit ( state, kfile ) {
+        state.kfile2Edit = kfile;
+    },
+    updateCheckList ( state, list ) {
+        state.checkList = list;
+    },
+    clearCheckList ( state ) {
+        state.checkList = []
+    },
+    setCheck2Edit ( state, kfile ) {
+        state.check2Edit = kfilCheck
     }
 }
-
 export default mutations;

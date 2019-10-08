@@ -1,17 +1,5 @@
 <template>
   <div id="container">
-    <div id="top">
-      <Input v-model="inputValue" id="search" size="default" @on-change="handleChange">
-        <Select v-model="selectValue" slot="prepend" style="width: 100px">
-          <Option value="uid">用户ID</Option>
-          <Option value="uphone">用户电话</Option>
-          <Option value="uname">用户名</Option>
-          <Option value="uemail">用户邮箱</Option>
-        </Select>
-        <Button slot="append" icon="ios-search" @click="searchUser"></Button>
-      </Input>
-      <Button type="info" @click="handleAddUser">新增用户</Button>
-    </div>
     <div v-if="loading" class="wrapper">
       <Col class="demo-spin-col" span="8">
         <Spin fix>

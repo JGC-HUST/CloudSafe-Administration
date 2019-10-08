@@ -1,11 +1,13 @@
 const state = {
     userInfo: {},
     userList: [],
+    user2Edit: {},
     feedList: [],
     checkList: [],
+    check2Edit: {},
     keyList: [],
+    kfile2Edit: {},
     statusList: [],
     questionList: [],
-    user2Edit: {}
 }
 export default state;

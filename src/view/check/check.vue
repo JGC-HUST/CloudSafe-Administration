@@ -41,29 +41,46 @@ export default {
       curIndex: 0,
       inputValue: "",
       selectValue: "uid",
+      statusArr: ["未审核", "通过", "不通过"],
       columns10: [
+        // {
+        //   type: "expand",
+        //   width: 50,
+        //   render: (h, params) => {
+        //     return h(expandRow, {
+        //       props: {
+        //         row: params.row
+        //       }
+        //     });
+        //   }
+        // },
         {
-          type: "expand",
-          width: 50,
-          render: (h, params) => {
-            return h(expandRow, {
-              props: {
-                row: params.row
-              }
-            });
-          }
+          title: "审核记录Id",
+          key: "cr_id"
         },
         {
-          title: "Id",
-          key: "user_id"
+          title: "密钥文件ID",
+          key: "file_id"
         },
         {
-          title: "用户名",
-          key: "user_name"
+          title: "申请者ID",
+          key: "cr_applicant"
         },
         {
-          title: "电话",
-          key: "user_phone"
+          title: "审核者ID",
+          key: "cr_reviewer"
+        },
+        {
+          title: "审核状态",
+          key: "cr_status",
+          width: 100,
+          align: "center"
+        },
+        {
+          title: "申请时间",
+          key: "cr_applytime",
+          width: 150,
+          align: "center"
         },
         {
           title: "Action",
@@ -113,17 +130,19 @@ export default {
   },
   computed: {
     loading() {
-      return this.$store.getters.getUserList.length == 0;
+      return this.$store.getters.getCheckList.length == 0;
     },
     data2Display() {
-      return this.$store.getters.getUserList.slice(
-        this.curIndex * 10,
-        this.curIndex * 10 + 10
-      );
+      return this.$store.getters.getCheckList
+        .slice(this.curIndex * 10, this.curIndex * 10 + 10)
+        .map(el => {
+          el.cr_status = this.statusArr[parseInt(el.cr_status)];
+          return el;
+        });
     }
   },
   beforeMount() {
-    this.$store.dispatch("pullUserList");
+    this.$store.dispatch("pullCheckList");
   },
   methods: {
     changePage(num) {

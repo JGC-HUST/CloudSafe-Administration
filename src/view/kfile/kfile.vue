@@ -3,14 +3,13 @@
     <div id="top">
       <Input v-model="inputValue" id="search" size="default" @on-change="handleChange">
         <Select v-model="selectValue" slot="prepend" style="width: 100px">
-          <Option value="uid">用户ID</Option>
-          <Option value="uphone">用户电话</Option>
-          <Option value="uname">用户名</Option>
-          <Option value="uemail">用户邮箱</Option>
+          <Option value="kname">密钥名称</Option>
+          <Option value="kid">密钥ID</Option>
+          <Option value="kuid">用户ID</Option>
         </Select>
         <Button slot="append" icon="ios-search" @click="searchUser"></Button>
       </Input>
-      <Button type="info" @click="handleAddUser">新增用户</Button>
+      <Button type="info" @click="handleAddUser">新增密钥</Button>
     </div>
     <div v-if="loading" class="wrapper">
       <Col class="demo-spin-col" span="8">
@@ -24,7 +23,7 @@
       <Table :columns="columns10" :data="data2Display" width="1200"></Table>
       <Page
         :current="1"
-        :total="$store.getters.getUserList.length"
+        :total="$store.getters.getKeyList.length"
         @on-change="changePage"
         simple
         id="page"
@@ -40,7 +39,7 @@ export default {
     return {
       curIndex: 0,
       inputValue: "",
-      selectValue: "uid",
+      selectValue: "kname",
       columns10: [
         {
           type: "expand",
@@ -55,15 +54,21 @@ export default {
         },
         {
           title: "Id",
-          key: "user_id"
+          key: "kfile_id"
         },
         {
-          title: "用户名",
-          key: "user_name"
+          title: "用户Id",
+          key: "kfile_user_id",
+          width: 300
         },
         {
-          title: "电话",
-          key: "user_phone"
+          title: "密钥名",
+          key: "kfile_name",
+          width: 300
+        },
+        {
+          title: "密钥类型",
+          key: "kfile_type"
         },
         {
           title: "Action",
@@ -113,17 +118,17 @@ export default {
   },
   computed: {
     loading() {
-      return this.$store.getters.getUserList.length == 0;
+      return this.$store.getters.getKeyList.length == 0;
     },
     data2Display() {
-      return this.$store.getters.getUserList.slice(
+      return this.$store.getters.getKeyList.slice(
         this.curIndex * 10,
         this.curIndex * 10 + 10
       );
     }
   },
   beforeMount() {
-    this.$store.dispatch("pullUserList");
+    this.$store.dispatch("pullKfileList");
   },
   methods: {
     changePage(num) {
@@ -133,26 +138,24 @@ export default {
       if (this.inputValue) {
         return;
       } else {
-        this.$store.dispatch("resetUserList");
+        this.$store.dispatch("resetKfileList");
       }
     },
     searchUser() {
-      console.log(this.selectValue);
+      // console.log(this.selectValue);
+      // console.log(this.inputValue);
       if (this.inputValue == "") {
         return;
       }
       switch (this.selectValue) {
-        case "uid":
-          this.$store.dispatch("pullUserById", this.inputValue);
+        case "kname":
+          this.$store.dispatch("pullKfileByName", this.inputValue);
           break;
-        case "uname":
-          this.$store.dispatch("pullUserByName", this.inputValue);
+        case "kid":
+          this.$store.dispatch("pullKfileById", this.inputValue);
           break;
-        case "uphone":
-          this.$store.dispatch("pullUserByPhone", this.inputValue);
-          break;
-        case "uemail":
-          this.$store.dispatch("pullUserByEmail", this.inputValue);
+        case "kuid":
+          this.$store.dispatch("pullKfileByUID", this.inputValue);
           break;
         default:
           break;
@@ -160,9 +163,9 @@ export default {
     },
     edit(data) {
       this.$router.push({
-        name: "userEdit",
+        name: "kfileEdit",
         params: {
-          userInfo: data
+          kfileInfo: data
         }
       });
     },

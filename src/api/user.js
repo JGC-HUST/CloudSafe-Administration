@@ -1,119 +1,119 @@
 import axios from '@/libs/api.request'
 
 export const getUserList = () => {
-  return axios.request({
+  return axios.request( {
     url: '/Management/findAllUser',
     method: 'get'
-  })
+  } )
 }
 
-export const getUserById = (id) => {
-  return axios.request({
+export const getUserById = ( id ) => {
+  return axios.request( {
     url: `/Management/findUserById?user_id=${id}`,
     method: 'get'
-  })
+  } )
 }
 
-export const getUserByName = (name) => {
-  return axios.request({
+export const getUserByName = ( name ) => {
+  return axios.request( {
     url: `/Management/findUserByName?user_name=${name}`,
     method: 'get'
-  })
+  } )
 }
 
-export const getUserByPhone = (phone) => {
-  return axios.request({
+export const getUserByPhone = ( phone ) => {
+  return axios.request( {
     url: `/Management/findUserByPhone?user_phone=${phone}`,
     method: 'get'
-  })
+  } )
 }
 
-export const getUserByEmail = (email) => {
-  return axios.request({
+export const getUserByEmail = ( email ) => {
+  return axios.request( {
     url: `/Management/findUserByEmail?user_email=${email}`,
     method: 'get'
-  })
+  } )
 }
 
-export const login = ({ userName, password }) => {
+export const login = ( { userName, password } ) => {
   const data = {
     userName,
     password
   }
-  return axios.request({
+  return axios.request( {
     url: 'login',
     data,
     method: 'post'
-  })
+  } )
 }
 
-export const getUserInfo = (token) => {
-  return axios.request({
+export const getUserInfo = ( token ) => {
+  return axios.request( {
     url: 'get_info',
     params: {
       token
     },
     method: 'get'
-  })
+  } )
 }
 
-export const logout = (token) => {
-  return axios.request({
+export const logout = ( token ) => {
+  return axios.request( {
     url: 'logout',
     method: 'post'
-  })
+  } )
 }
 
 export const getUnreadCount = () => {
-  return axios.request({
+  return axios.request( {
     url: 'message/count',
     method: 'get'
-  })
+  } )
 }
 
 export const getMessage = () => {
-  return axios.request({
+  return axios.request( {
     url: 'message/init',
     method: 'get'
-  })
+  } )
 }
 
 export const getContentByMsgId = msg_id => {
-  return axios.request({
+  return axios.request( {
     url: 'message/content',
     method: 'get',
     params: {
       msg_id
     }
-  })
+  } )
 }
 
 export const hasRead = msg_id => {
-  return axios.request({
+  return axios.request( {
     url: 'message/has_read',
     method: 'post',
     data: {
       msg_id
     }
-  })
+  } )
 }
 
 export const removeReaded = msg_id => {
-  return axios.request({
+  return axios.request( {
     url: 'message/remove_readed',
     method: 'post',
     data: {
       msg_id
     }
-  })
+  } )
 }
 
 export const restoreTrash = msg_id => {
-  return axios.request({
+  return axios.request( {
     url: 'message/restore',
     method: 'post',
     data: {
       msg_id
     }
-  })
+  } )
 }

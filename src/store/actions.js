@@ -1,4 +1,6 @@
 import { getUserList, getUserById, getUserByName, getUserByPhone, getUserByEmail } from '@/api/user'
+import { getKfileList, getKfileById, getKfileByName, getKfileByUID } from '@/api/kfile'
+import { getCheckList, getCheckById, getCheckByApplicantAndFileId } from '@/api/check'
 
 const actions = {
     // userInfo: {},
@@ -58,7 +60,77 @@ const actions = {
             context.commit( 'updateUserList', res.data )
         } );
     },
-
+    // kfile
+    pullKfileList ( context ) {
+        getKfileList().then( res => {
+            context.commit( 'updateKfileList', res.data )
+        } );
+    },
+    pullKfileById ( context, id ) {
+        getKfileById( id ).then( res => {
+            console.log( res )
+            if ( ( typeof res.data ).toLowerCase() == 'object' ) {
+                context.commit( 'updateKfileList', [ res.data ] );
+            } else {
+                context.commit( 'updateKfileList', [] );
+            }
+        } )
+    },
+    pullKfileByName ( context, name ) {
+        getKfileByName( name ).then( res => {
+            if ( ( typeof res.data ).toLowerCase() == 'object' ) {
+                context.commit( 'updateKfileList', [ res.data ] );
+            } else {
+                context.commit( 'updateKfileList', [] );
+            }
+        } )
+    },
+    pullKfileByUID ( context, phone ) {
+        getKfileByUID( phone ).then( res => {
+            if ( ( typeof res.data ).toLowerCase() == 'object' ) {
+                context.commit( 'updateKfileList', [ res.data ] );
+            } else {
+                context.commit( 'updateKfileList', [] );
+            }
+        } )
+    },
+    resetKfileList ( context ) {
+        context.commit( 'clearKfileList' );
+        getKfileList().then( res => {
+            context.commit( 'updateKfileList', res.data )
+        } );
+    },
+    // check record
+    pullCheckList ( context ) {
+        getCheckList().then( res => {
+            context.commit( 'updateCheckList', res.data )
+        } );
+    },
+    pullCheckById ( context, id ) {
+        getCheckById( id ).then( res => {
+            console.log( res )
+            if ( ( typeof res.data ).toLowerCase() == 'object' ) {
+                context.commit( 'updateCheckList', [ res.data ] );
+            } else {
+                context.commit( 'updateCheckList', [] );
+            }
+        } )
+    },
+    pullCheckByName ( context, name ) {
+        getCheckByApplicantAndFileId( app, id ).then( res => {
+            if ( ( typeof res.data ).toLowerCase() == 'object' ) {
+                context.commit( 'updateCheckList', [ res.data ] );
+            } else {
+                context.commit( 'updateCheckList', [] );
+            }
+        } )
+    },
+    resetCheckList ( context ) {
+        context.commit( 'clearCheckList' );
+        getCheckList().then( res => {
+            context.commit( 'updateCheckList', res.data )
+        } );
+    },
 }
 
 export default actions;

@@ -72,8 +72,9 @@ export default [
   },
   // 秘钥管理
   {
-    path: '/update',
-    name: 'update2',
+    path: '/kfile',
+    name: 'kfile',
+    redirect: '/kfile/kfilelist',
     meta: {
       icon: 'ios-key-outline',
       title: '秘钥管理'
@@ -81,29 +82,42 @@ export default [
     component: Main,
     children: [
       {
-        path: 'update_table_page',
-        name: 'update_table_page',
+        path: 'kfileList',
+        name: 'kfileList',
         meta: {
-          icon: 'ios-document',
-          title: '上传Csv'
+          icon: 'ios-key-outline',
+          title: '秘钥列表',
+          hideInMenu: true
         },
-        component: () => import( '@/view/update/update-table.vue' )
+        component: () => import( '@/view/kfile/kfile.vue' )
       },
       {
-        path: 'update_paste_page',
-        name: 'update_paste_page',
+        path: 'kfileEdit',
+        name: 'kfileEdit',
         meta: {
-          icon: 'md-clipboard',
-          title: '粘贴表格数据'
+          icon: 'ios-key-outline',
+          title: '编辑秘钥信息',
+          hideInMenu: true
         },
-        component: () => import( '@/view/update/update-paste.vue' )
+        component: () => import( '@/view/kfile/edit.vue' )
+      },
+      {
+        path: 'kfileAdd',
+        name: 'kfileAdd',
+        meta: {
+          icon: 'ios-key-outline',
+          title: '新增秘钥',
+          hideInMenu: true
+        },
+        component: () => import( '@/view/kfile/new.vue' )
       }
     ]
   },
   // 审核管理
   {
-    path: '/update',
-    name: 'update3',
+    path: '/check',
+    name: 'check',
+    redirect: '/check/checklist',
     meta: {
       icon: 'ios-checkbox-outline',
       title: '审核管理'
@@ -111,22 +125,34 @@ export default [
     component: Main,
     children: [
       {
-        path: 'update_table_page',
-        name: 'update_table_page',
+        path: 'checkList',
+        name: 'checkList',
         meta: {
-          icon: 'ios-document',
-          title: '上传Csv'
+          icon: 'ios-checkbox-outline',
+          title: '审核列表',
+          hideInMenu: true
         },
-        component: () => import( '@/view/update/update-table.vue' )
+        component: () => import( '@/view/check/check.vue' )
       },
       {
-        path: 'update_paste_page',
-        name: 'update_paste_page',
+        path: 'checkEdit',
+        name: 'checkEdit',
         meta: {
-          icon: 'md-clipboard',
-          title: '粘贴表格数据'
+          icon: 'ios-checkbox-outline',
+          title: '编辑审核信息',
+          hideInMenu: true
         },
-        component: () => import( '@/view/update/update-paste.vue' )
+        component: () => import( '@/view/check/edit.vue' )
+      },
+      {
+        path: 'checkAdd',
+        name: 'checkAdd',
+        meta: {
+          icon: 'ios-checkbox-outline',
+          title: '新增审核',
+          hideInMenu: true
+        },
+        component: () => import( '@/view/check/new.vue' )
       }
     ]
   },
@@ -277,7 +303,6 @@ export default [
           icon: 'md-flower',
           title: route => `{{ params }}-${route.params.id}`,
           notCache: true,
-          beforeCloseName: 'before_close_normal'
         },
         component: () => import( '@/view/argu-page/params.vue' )
       },
