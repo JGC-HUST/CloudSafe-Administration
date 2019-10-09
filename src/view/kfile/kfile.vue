@@ -121,10 +121,11 @@ export default {
       return this.$store.getters.getKeyList.length == 0;
     },
     data2Display() {
-      return this.$store.getters.getKeyList.slice(
-        this.curIndex * 10,
-        this.curIndex * 10 + 10
-      );
+      return this.$store.getters.getKeyList
+        .slice(this.curIndex * 10, this.curIndex * 10 + 10)
+        .filter(val => {
+          return val.kfile_id;
+        });
     }
   },
   beforeMount() {
@@ -173,7 +174,7 @@ export default {
       // todo
     },
     handleAddUser() {
-      this.$router.push({ name: "userAdd" });
+      this.$router.push({ name: "kfileAdd" });
     }
   }
 };

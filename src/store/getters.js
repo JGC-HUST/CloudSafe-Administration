@@ -28,13 +28,13 @@ const getters = {
         return state.questionList;
     },
     // user2Edit: {}
-    getUser2Edit () {
+    getUser2Edit ( state ) {
         return state.user2Edit;
     },
-    getKfile2Edit () {
+    getKfile2Edit ( state ) {
         return state.kfile2Edit;
     },
-    getCheck2Edit () {
+    getCheck2Edit ( state ) {
         return state.check2Edit;
     },
 }

@@ -71,7 +71,7 @@
         </Row>-->
       </div>
       <div id="btn-group">
-        <Button type="warning" @click="handleCancelEditing" :disabled="isLoading">取消</Button>
+        <Button type="warning" @click="handleCancelAdding" :disabled="isLoading">取消</Button>
         <Button type="info" @click="handleSubmitEditing">提交</Button>
       </div>
     </Card>
@@ -112,8 +112,8 @@ export default {
     };
   },
   methods: {
-    handleCancelEditing() {
-      this.isEditing = false;
+    handleCancelAdding() {
+      this.$router.back(-1);
     },
     handleSubmitEditing() {
       console.log(this.user2Update);

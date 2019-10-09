@@ -1,15 +1,38 @@
 <template>
   <div id="container">
     <div id="top">
-      <Input v-model="inputValue" id="search" size="default" @on-change="handleChange">
-        <Select v-model="selectValue" slot="prepend" style="width: 100px">
-          <Option value="uid">用户ID</Option>
-          <Option value="uphone">用户电话</Option>
-          <Option value="uname">用户名</Option>
-          <Option value="uemail">用户邮箱</Option>
+      <div id="searcBtns">
+        <Select v-model="inputMode" style="width: 150px">
+          <Option value="1">审核记录ID</Option>
+          <Option value="2">申请人ID和文件ID</Option>
         </Select>
-        <Button slot="append" icon="ios-search" @click="searchUser"></Button>
-      </Input>
+        <div v-if="inputMode == 1" class="inputgroup">
+          <Input
+            v-model="cr_id"
+            id="search"
+            size="default"
+            @on-change="handleChange"
+            placeholder="请输入审核记录ID"
+          ></Input>
+        </div>
+        <div v-else class="inputgroup">
+          <Input
+            v-model="cr_applicant"
+            id="search"
+            size="default"
+            @on-change="handleChange"
+            placeholder="请输入申请人ID"
+          ></Input>
+          <Input
+            v-model="file_id"
+            id="search"
+            size="default"
+            @on-change="handleChange"
+            placeholder="请输入文件ID"
+          ></Input>
+        </div>
+        <Button icon="ios-search" @click="searchCheck"></Button>
+      </div>
       <Button type="info" @click="handleAddUser">新增用户</Button>
     </div>
     <div v-if="loading" class="wrapper">
@@ -24,7 +47,7 @@
       <Table :columns="columns10" :data="data2Display" width="1200"></Table>
       <Page
         :current="1"
-        :total="$store.getters.getUserList.length"
+        :total="$store.getters.getCheckList.length"
         @on-change="changePage"
         simple
         id="page"
@@ -38,22 +61,13 @@ export default {
   components: { expandRow },
   data() {
     return {
+      inputMode: "1",
       curIndex: 0,
-      inputValue: "",
-      selectValue: "uid",
+      cr_id: "",
+      cr_applicant: "",
+      file_id: "",
       statusArr: ["未审核", "通过", "不通过"],
       columns10: [
-        // {
-        //   type: "expand",
-        //   width: 50,
-        //   render: (h, params) => {
-        //     return h(expandRow, {
-        //       props: {
-        //         row: params.row
-        //       }
-        //     });
-        //   }
-        // },
         {
           title: "审核记录Id",
           key: "cr_id"
@@ -138,6 +152,9 @@ export default {
         .map(el => {
           el.cr_status = this.statusArr[parseInt(el.cr_status)];
           return el;
+        })
+        .filter(val => {
+          return val.cr_id;
         });
     }
   },
@@ -149,29 +166,39 @@ export default {
       this.curIndex = num - 1;
     },
     handleChange(event) {
-      if (this.inputValue) {
-        return;
+      if (this.inputMode == "1") {
+        if (this.cr_id) {
+          return;
+        } else {
+          this.$store.dispatch("resetCheckList");
+        }
       } else {
-        this.$store.dispatch("resetUserList");
+        if (this.cr_applicant || this.file_id) {
+          return;
+        } else {
+          this.$store.dispatch("resetCheckList");
+        }
       }
     },
-    searchUser() {
-      console.log(this.selectValue);
-      if (this.inputValue == "") {
-        return;
+    searchCheck() {
+      if (this.inputMode == "1") {
+        if (this.cr_id == "") {
+          return;
+        }
+      } else {
+        if (this.cr_applicant == "" || this.file_id == "") {
+          return;
+        }
       }
-      switch (this.selectValue) {
-        case "uid":
-          this.$store.dispatch("pullUserById", this.inputValue);
+      switch (this.inputMode) {
+        case "1":
+          this.$store.dispatch("pullCheckById", this.cr_id);
           break;
-        case "uname":
-          this.$store.dispatch("pullUserByName", this.inputValue);
-          break;
-        case "uphone":
-          this.$store.dispatch("pullUserByPhone", this.inputValue);
-          break;
-        case "uemail":
-          this.$store.dispatch("pullUserByEmail", this.inputValue);
+        case "2":
+          this.$store.dispatch("pullCheckByApplicantAndFileId", {
+            app: this.cr_applicant,
+            id: this.file_id
+          });
           break;
         default:
           break;
@@ -179,7 +206,7 @@ export default {
     },
     edit(data) {
       this.$router.push({
-        name: "userEdit",
+        name: "checkEdit",
         params: {
           userInfo: data
         }
@@ -214,6 +241,18 @@ export default {
   margin: 40px;
   margin-left: 17%;
   margin-right: 30px;
+}
+#searcBtns {
+  width: 60%;
+  margin: 0 5% 0 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.inputgroup {
+  width: 800px;
+  display: flex;
+  justify-content: center;
 }
 #page {
   left: 50%;

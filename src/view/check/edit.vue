@@ -40,17 +40,12 @@ export default {
     return {
       userInfo: this.$route.params.userInfo,
       nameMap: {
-        user_id: "用户ID",
-        user_phone: "用户电话",
-        user_email: "用户电子邮箱",
-        user_pwd: "密码",
-        user_name: "用户名",
-        user_gender: "用户性别",
-        user_birthday: "用户生日",
-        user_region: "用户地区",
-        user_status: "用户状态",
-        user_createTime: "用户注册时间",
-        user_level: "用户等级"
+        cr_id: "审核记录ID",
+        cr_applicant: "申请者",
+        cr_reviewer: "审核者",
+        file_id: "文件ID",
+        cr_status: "审核状态",
+        cr_applytime: "审核申请时间"
       },
       isEditing: false,
       isLoading: false,
@@ -63,7 +58,6 @@ export default {
       Object.keys(this.userInfo).forEach(element => {
         console.log(element.indexOf("_"));
         if (element.indexOf("_") !== 0) {
-          console.log(element);
           newObj[element] = this.userInfo[element];
         }
       });
@@ -117,10 +111,10 @@ export default {
   text-align: center;
 }
 #card-container {
-  height: 60%;
+  height: 50%;
   width: 50%;
   min-width: 600px;
-  min-height: 560px;
+  min-height: 360px;
   margin: 40px auto;
 }
 #btn-group {

@@ -35,7 +35,7 @@ const mutations = {
         state.checkList = []
     },
     setCheck2Edit ( state, kfile ) {
-        state.check2Edit = kfilCheck
+        state.check2Edit = kfile
     }
 }
 export default mutations;

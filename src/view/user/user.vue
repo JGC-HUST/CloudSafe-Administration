@@ -116,10 +116,11 @@ export default {
       return this.$store.getters.getUserList.length == 0;
     },
     data2Display() {
-      return this.$store.getters.getUserList.slice(
-        this.curIndex * 10,
-        this.curIndex * 10 + 10
-      );
+      return this.$store.getters.getUserList
+        .slice(this.curIndex * 10, this.curIndex * 10 + 10)
+        .filter(val => {
+          return val.user_id;
+        });
     }
   },
   beforeMount() {

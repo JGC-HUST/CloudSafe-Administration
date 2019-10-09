@@ -13,6 +13,7 @@ const actions = {
     getUserInfo ( context ) {
 
     },
+    // user
     pullUserList ( context ) {
         getUserList().then( res => {
             context.commit( 'updateUserList', res.data )
@@ -23,7 +24,7 @@ const actions = {
             if ( ( typeof res.data ).toLowerCase() == 'object' ) {
                 context.commit( 'updateUserList', [ res.data ] );
             } else {
-                context.commit( 'updateUserList', [] );
+                context.commit( 'updateUserList', [ {} ] );
             }
         } )
     },
@@ -32,7 +33,7 @@ const actions = {
             if ( ( typeof res.data ).toLowerCase() == 'object' ) {
                 context.commit( 'updateUserList', [ res.data ] );
             } else {
-                context.commit( 'updateUserList', [] );
+                context.commit( 'updateUserList', [ {} ] );
             }
         } )
     },
@@ -41,7 +42,7 @@ const actions = {
             if ( ( typeof res.data ).toLowerCase() == 'object' ) {
                 context.commit( 'updateUserList', [ res.data ] );
             } else {
-                context.commit( 'updateUserList', [] );
+                context.commit( 'updateUserList', [ {} ] );
             }
         } )
     },
@@ -50,7 +51,7 @@ const actions = {
             if ( ( typeof res.data ).toLowerCase() == 'object' ) {
                 context.commit( 'updateUserList', [ res.data ] );
             } else {
-                context.commit( 'updateUserList', [] );
+                context.commit( 'updateUserList', [ {} ] );
             }
         } )
     },
@@ -72,7 +73,7 @@ const actions = {
             if ( ( typeof res.data ).toLowerCase() == 'object' ) {
                 context.commit( 'updateKfileList', [ res.data ] );
             } else {
-                context.commit( 'updateKfileList', [] );
+                context.commit( 'updateKfileList', [ {} ] );
             }
         } )
     },
@@ -81,7 +82,7 @@ const actions = {
             if ( ( typeof res.data ).toLowerCase() == 'object' ) {
                 context.commit( 'updateKfileList', [ res.data ] );
             } else {
-                context.commit( 'updateKfileList', [] );
+                context.commit( 'updateKfileList', [ {} ] );
             }
         } )
     },
@@ -90,7 +91,7 @@ const actions = {
             if ( ( typeof res.data ).toLowerCase() == 'object' ) {
                 context.commit( 'updateKfileList', [ res.data ] );
             } else {
-                context.commit( 'updateKfileList', [] );
+                context.commit( 'updateKfileList', [ {} ] );
             }
         } )
     },
@@ -112,16 +113,16 @@ const actions = {
             if ( ( typeof res.data ).toLowerCase() == 'object' ) {
                 context.commit( 'updateCheckList', [ res.data ] );
             } else {
-                context.commit( 'updateCheckList', [] );
+                context.commit( 'updateCheckList', [ {} ] );
             }
         } )
     },
-    pullCheckByName ( context, name ) {
-        getCheckByApplicantAndFileId( app, id ).then( res => {
+    pullCheckByApplicantAndFileId ( context, data ) {
+        getCheckByApplicantAndFileId( data.app, parseInt( data.id ) ).then( res => {
             if ( ( typeof res.data ).toLowerCase() == 'object' ) {
                 context.commit( 'updateCheckList', [ res.data ] );
             } else {
-                context.commit( 'updateCheckList', [] );
+                context.commit( 'updateCheckList', [ {} ] );
             }
         } )
     },
